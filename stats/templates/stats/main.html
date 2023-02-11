@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+
+
+{% block body %}
+    <ul>
+    {% for statstic in statistic_list %}
+        <li><a href="{{statstic.get_absolute_url}}">{{statstic.name}}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock body %}

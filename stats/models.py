@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext as _
 from django.utils.text import slugify
+from django.urls import reverse
 # Create your models here.
 
 
@@ -12,12 +13,16 @@ class Statistic(models.Model):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse("stats:dashboard", kwargs={"slug": self.slug})
+    
     @property
     def data(self):
-        return self.dataitem_set.all()
+        return self.statistic_dataitems.all()
 
     def __str__(self):
         return self.name
+
 
 
 class DataItem(models.Model):

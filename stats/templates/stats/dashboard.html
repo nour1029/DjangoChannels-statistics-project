@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-6">
+                <div>
+                    <p id="dashboard-name">name : <span>{{name}}</span></p>
+                    <p>slug : <span id="dashboard-slug">{{slug}}</span></p>
+                    <p>user : <span id="user">{{user}}</span></p>
+                    <hr>
+                        <div>
+                            <div class="mb-3">
+                                <label for="value" class="form-label">Value</label>
+                                <input type="text" class="form-control" id="dataitem">
+                            </div>
+                            <button id="submit-btn" class="btn btn-primary">Send</button>
+                        </div>
+                </div>
+                <hr>
+                <div id="data-box">
+                    {% for dataitem in data %}
+                        <p>{{dataitem.user}} : {{dataitem.value}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-6">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+
+
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'dashboard.js' %}" prefer></script>
+{% endblock script %}
